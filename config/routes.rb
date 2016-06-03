@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  root 'holes#show'
+  get '/' => 'holes#show'
+
+  get "/logout" => "sessions#destroy", as: :logout
+  get "/auth/:provider/callback" => "sessions#create"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
