@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get "/logout" => "sessions#destroy", as: :logout
   get "/auth/:provider/callback" => "sessions#create"
 
+  post '/search_result' => 'holes#search_result'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
