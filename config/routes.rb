@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'holes#show'
   get '/' => 'holes#show'
 
-  get "/logout" => "sessions#destroy", as: :logout
+  delete "/logout" => "sessions#destroy", as: :logout
   get "/auth/:provider/callback" => "sessions#create"
 
   post '/search_result' => 'holes#search_result'

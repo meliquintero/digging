@@ -11,6 +11,10 @@ class HolesController < ApplicationController
     else
       @location = data
       @user_input = params[:user_input]
+      @destination_latitud = @location.latitud
+      @destination_longitud = @location.longitud.abs
+      @destination = Geocode.find_destination(@destination_latitud,@destination_longitud)
+      
       render :show
     end
 

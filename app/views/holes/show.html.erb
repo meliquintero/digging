@@ -1,19 +1,32 @@
-<h1>Holes#show</h1>
-<p>Find me in app/views/holes/show.html.erb</p>
-<%=current_user.inspect%>
+<h1>Welcome to Digging Holes</h1>
+<p>Please enter the origin of your hole<%=", " + current_user.name if current_user%></p>
 <br><br>
-<%=params%>
+<%= form_tag search_result_path, class: "input-group input-group-lg" do  %>
+    <%= text_field_tag :user_input, nil, class: 'form-control', placeholder: 'Start my hole at' %>
+  <span class="input-group-btn">
+  <%= submit_tag "Search", class: 'btn btn-default'%>
+</span>
+<% end %>
 <br><br>
-<div>
-  <% if @location %>
-    <ul>
-      <li><strong>Address: </strong> <%=@location.formatted_address %></li>
-      <li><strong>Latitud: </strong><%=@location.latitud %></li>
-      <li><strong>Longitud: </strong><%=@location.longitud %></li>
-  </ul>
-</div>
-  <br><br><br>
-  <br>
-  <img src="https://maps.googleapis.com/maps/api/streetview?size=584x400&location=<%=@user_input%>">
+<% if @location %>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Origin Destination</div>
+      <table class="table">
+      <td>
+          <p><strong>Address: </strong> <%=@location.formatted_address %></p>
+          <p><strong>Latitud: </strong><%=@location.latitud %></p>
+          <p><strong>Longitud: </strong><%=@location.longitud %></p>
+          <img src="https://maps.googleapis.com/maps/api/streetview?size=420x500&location=<%=@user_input%>">
+      </td>
+      <td>
+        <p><strong>Address: </strong> <%=@destination.formatted_address %></p>
+        <p><strong>Latitud: </strong><%=@destination.latitud %></p>
+        <p><strong>Longitud: </strong><%=@destination.longitud %></p>
+        <img src="https://maps.googleapis.com/maps/api/streetview?size=420x500&location=<%=@destination.latitud%>,<%=@destination.longitud%>">
+      </td>
+    </tr>
 
-  <% end %>
+  </table>
+</div>
+<% end %>
