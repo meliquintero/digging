@@ -5,7 +5,7 @@ class Geocode
   def initialize(data)
     data["results"].collect do |hash|
       @place_id =  hash["place_id"]
-      @formatted_address = hash["formatted_address"].first
+      @formatted_address = hash["formatted_address"]
       @geometry = hash["geometry"]
     end
     @location = @geometry["location"]

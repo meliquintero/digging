@@ -1,8 +1,15 @@
 <h1>Holes#show</h1>
 <p>Find me in app/views/holes/show.html.erb</p>
 <%=current_user.inspect%>
-<br>
-<br><br><br>
+<br><br>
 <%=params%>
-
-<%=@location%>
+<br><br>
+<div>
+  <% if @location %>
+    <ul>
+      <li><strong>Address: </strong> <%=@location.formatted_address %></li>
+      <li><strong>Latitud: </strong><%=@location.latitud %></li>
+      <li><strong>Longitud: </strong><%=@location.longitud %></li>
+  </ul>
+  <% end %>
+</div><br><br>
