@@ -10,13 +10,16 @@ class HolesController < ApplicationController
   def create
     @hole = Hole.new
     @hole.current_user_id = params[:current_user_id]
+    @hole.origen_address = params[:origen_address]
     @hole.origin_latitud = params[:origin_latitud]
     @hole.origin_longitud = params[:origin_longitud]
-    @hole.origin_image =params[:origin_image]
+    @hole.origin_image = params[:origin_image]
+    @hole.destination_address = params[:destination_address]
     @hole.destination_latitud = params[:destination_latitud]
     @hole.destination_longitud = params[:destination_longitud]
     @hole.destination_image = params[:destination_image]
-    @hole.save!
+
+    @hole.save
     if @hole.save
       redirect_to hole_path(@hole.current_user_id)
     else
@@ -25,6 +28,7 @@ class HolesController < ApplicationController
   end
 
   def show
+    @holes = Hole.where(current_user_id: params[:id])
   end
 
   def destroy
@@ -41,7 +45,6 @@ class HolesController < ApplicationController
       @destination_latitud = @location.latitud
       @destination_longitud = @location.longitud * (-1)
       @destination = Geocode.find_destination(@destination_latitud,@destination_longitud)
-
       render :index
     end
 

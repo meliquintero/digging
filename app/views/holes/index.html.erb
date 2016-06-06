@@ -34,24 +34,35 @@
         <p><strong>Latitud: </strong><%=@destination.latitud %></p>
         <p><strong>Longitud: </strong><%=@destination.longitud %></p>
         <%= image_tag("https://maps.googleapis.com/maps/api/streetview?size=420x500&location=#{@destination.latitud},#{@destination.longitud}")%>
+        <br>
+        <br>
+        <%= image_tag("https://maps.googleapis.com/maps/api/streetview?size=420x500&location=#{@destination.formatted_address}")%>
+
       </td>
     </tr>
     <%end%>
 
     <%if current_user%>
       <tr>
+        <td>
 
+        </td>
       <td class="fava">
       <%= form_tag holes_path, method: :post do %>
       <%=hidden_field_tag :current_user_id, current_user.uid%>
+      <%=hidden_field_tag :origen_address, @location.formatted_address %>
       <%=hidden_field_tag :origin_latitud, @location.latitud%>
       <%=hidden_field_tag :origin_longitud, @location.longitud%>
-      <%=hidden_field_tag :origin_image, "https://maps.googleapis.com/maps/api/streetview?size=420x500&location=#{@location.latitud},#{@location.longitud}"%>
+      <%=hidden_field_tag :origin_image, "https://maps.googleapis.com/maps/api/streetview?size=420x200&location=#{@location.latitud},#{@location.longitud}"%>
+      <%=hidden_field_tag :destination_address, @destination.formatted_address %>
       <%=hidden_field_tag :destination_latitud, @destination.latitud%>
       <%=hidden_field_tag :destination_longitud, @destination.longitud%>
-      <%=hidden_field_tag :destination_image, "https://maps.googleapis.com/maps/api/streetview?size=420x500&location=#{@destination.latitud},#{@destination.longitud}"%>
+      <%=hidden_field_tag :destination_image, "https://maps.googleapis.com/maps/api/streetview?size=420x200&location=#{@destination.latitud},#{@destination.longitud}"%>
       <%=submit_tag 'Save Hole!!', class: "btn btn-primary"%>
     <%end%>
+  </td>
+    <td>
+    </td>
     </tr>
     <%end%>
   </table>

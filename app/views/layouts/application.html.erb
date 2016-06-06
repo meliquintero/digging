@@ -39,6 +39,7 @@
              <%= submit_tag "Search", class: 'btn btn-default'%>
              <% end %>
            </li>
+           <li><%=link_to "My Holes", hole_path(current_user.uid)%></li>
          </ul>
          <ul class="nav navbar-nav navbar-right">
 

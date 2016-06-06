@@ -1,1 +1,20 @@
-<%=@holes.inspect%>
+<table class="table">
+<%@holes.map do |hole|%>
+  <tr>
+    <td>
+      <p><%=hole.origen_address%></p>
+      <p><%=hole.origin_latitud%></p>
+      <p><%=hole.origin_longitud%></p>
+      <%=image_tag hole.origin_image%>
+    </td>
+    <td>
+      <p><%=hole.destination_address%></p>
+      <p><%=hole.destination_latitud%></p>
+      <p><%=hole.destination_longitud%></p>
+      <%=image_tag hole.destination_image%>
+    </td>
+
+  </tr>
+
+<%end%>
+</table>
