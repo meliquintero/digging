@@ -2,8 +2,8 @@
 <p>Please enter the origin of your hole<%=", " + current_user.name if current_user%></p>
 <br><br>
 <%= form_tag search_result_path, class: "input-group input-group-lg" do  %>
-    <%= text_field_tag :user_input, nil, class: 'form-control', placeholder: 'Start my hole at' %>
-  <span class="input-group-btn">
+<%= text_field_tag :user_input, nil, class: 'form-control', placeholder: 'Start my hole at' %>
+<span class="input-group-btn">
   <%= submit_tag "Search", class: 'btn btn-default'%>
 </span>
 <% end %>
@@ -23,46 +23,40 @@
     </tr>
     <tr>
       <td>
-          <p><strong>Address: </strong> <%=@location.formatted_address %></p>
-          <p><strong>Latitud: </strong><%=@location.latitud %></p>
-          <p><strong>Longitud: </strong><%=@location.longitud %></p>
-          <%= image_tag("https://maps.googleapis.com/maps/api/streetview?size=420x500&location=#{@location.latitud},#{@location.longitud}")%>
+        <p><strong>Address: </strong> <%=@location.formatted_address %></p>
+        <p><strong>Latitud: </strong><%=@location.latitud %></p>
+        <p><strong>Longitud: </strong><%=@location.longitud %></p>
+        <%= image_tag("https://maps.googleapis.com/maps/api/streetview?size=420x420&location=#{@location.latitud},#{@location.longitud}")%>
       </td>
       <%if @destination != nil%>
       <td>
         <p><strong>Address: </strong> <%=@destination.formatted_address %></p>
         <p><strong>Latitud: </strong><%=@destination.latitud %></p>
         <p><strong>Longitud: </strong><%=@destination.longitud %></p>
-        <%= image_tag("https://maps.googleapis.com/maps/api/streetview?size=420x500&location=#{@destination.latitud},#{@destination.longitud}")%>
-        <br>
-        <br>
-        <%= image_tag("https://maps.googleapis.com/maps/api/streetview?size=420x500&location=#{@destination.formatted_address}")%>
-
+        <%= image_tag("https://maps.googleapis.com/maps/api/streetview?size=420x420&location=#{@destination.latitud},#{@destination.longitud}")%>
       </td>
     </tr>
     <%end%>
 
     <%if current_user%>
-      <tr>
-        <td>
+    <tr>
+      <td>
 
-        </td>
+      </td>
       <td class="fava">
-      <%= form_tag holes_path, method: :post do %>
-      <%=hidden_field_tag :current_user_id, current_user.uid%>
-      <%=hidden_field_tag :origen_address, @location.formatted_address %>
-      <%=hidden_field_tag :origin_latitud, @location.latitud%>
-      <%=hidden_field_tag :origin_longitud, @location.longitud%>
-      <%=hidden_field_tag :origin_image, "https://maps.googleapis.com/maps/api/streetview?size=420x200&location=#{@location.latitud},#{@location.longitud}"%>
-      <%=hidden_field_tag :destination_address, @destination.formatted_address %>
-      <%=hidden_field_tag :destination_latitud, @destination.latitud%>
-      <%=hidden_field_tag :destination_longitud, @destination.longitud%>
-      <%=hidden_field_tag :destination_image, "https://maps.googleapis.com/maps/api/streetview?size=420x200&location=#{@destination.latitud},#{@destination.longitud}"%>
-      <%=submit_tag 'Save Hole!!', class: "btn btn-primary"%>
-    <%end%>
-  </td>
-    <td>
-    </td>
+        <%= form_tag holes_path, method: :post do %>
+        <%=hidden_field_tag :current_user_id, current_user.uid%>
+        <%=hidden_field_tag :origen_address, @location.formatted_address %>
+        <%=hidden_field_tag :origin_latitud, @location.latitud%>
+        <%=hidden_field_tag :origin_longitud, @location.longitud%>
+        <%=hidden_field_tag :origin_image, "https://maps.googleapis.com/maps/api/streetview?size=420x200&location=#{@location.latitud},#{@location.longitud}"%>
+        <%=hidden_field_tag :destination_address, @destination.formatted_address %>
+        <%=hidden_field_tag :destination_latitud, @destination.latitud%>
+        <%=hidden_field_tag :destination_longitud, @destination.longitud%>
+        <%=hidden_field_tag :destination_image, "https://maps.googleapis.com/maps/api/streetview?size=420x200&location=#{@destination.latitud},#{@destination.longitud}"%>
+        <%=submit_tag 'Save Hole!!', class: "btn btn-primary"%>
+        <%end%>
+      </td>
     </tr>
     <%end%>
   </table>

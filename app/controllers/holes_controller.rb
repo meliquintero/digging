@@ -32,6 +32,8 @@ class HolesController < ApplicationController
   end
 
   def destroy
+    Hole.delete(params[:id])
+    redirect_to hole_path(current_user.uid)
   end
 
 

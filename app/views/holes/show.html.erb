@@ -2,18 +2,24 @@
 <%@holes.map do |hole|%>
   <tr>
     <td>
-      <p><%=hole.origen_address%></p>
-      <p><%=hole.origin_latitud%></p>
-      <p><%=hole.origin_longitud%></p>
+      <p><strong>Address: </strong><%=hole.origen_address%></p>
+      <p><strong>Latitud: </strong><%=hole.origin_latitud%></p>
+      <p><strong>Longitud: </strong><%=hole.origin_longitud%></p>
       <%=image_tag hole.origin_image%>
     </td>
     <td>
-      <p><%=hole.destination_address%></p>
-      <p><%=hole.destination_latitud%></p>
-      <p><%=hole.destination_longitud%></p>
+      <p><strong>Address: </strong><%=hole.destination_address%></p>
+      <p><strong>Latitud: </strong><%=hole.destination_latitud%></p>
+      <p><strong>Longitud: </strong><%=hole.destination_longitud%></p>
       <%=image_tag hole.destination_image%>
     </td>
 
+  </tr>
+  <tr>
+    <td></td>
+    <td>
+      <%=button_to "Delete this hole", hole, method: :delete, class: "btn btn-primary", data: { confirm: "Are you sure?" } %>
+    </td>
   </tr>
 
 <%end%>
