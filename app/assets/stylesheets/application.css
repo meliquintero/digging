@@ -23,3 +23,7 @@
 .name {
   color: white;
 }
+
+.totheleft {
+  float: right;
+}

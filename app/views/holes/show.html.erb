@@ -9,15 +9,24 @@
 <% end %>
 <br><br>
 <% if @location %>
-<div class="panel panel-default">
+<div class="panel panel-primary">
   <!-- Default panel contents -->
-  <div class="panel-heading">Origin Destination</div>
-      <table class="table">
+
+  <table class="table">
+    <tr>
+      <th>
+        Origin
+      </th>
+      <th>
+        Destination
+      </th>
+    </tr>
+    <tr>
       <td>
           <p><strong>Address: </strong> <%=@location.formatted_address %></p>
           <p><strong>Latitud: </strong><%=@location.latitud %></p>
           <p><strong>Longitud: </strong><%=@location.longitud %></p>
-          <img src="https://maps.googleapis.com/maps/api/streetview?size=420x500&location=<%=@user_input%>">
+          <img src="https://maps.googleapis.com/maps/api/streetview?size=420x500&location=<%=@location.latitud%>,<%=@location.longitud%>">
       </td>
       <td>
         <p><strong>Address: </strong> <%=@destination.formatted_address %></p>

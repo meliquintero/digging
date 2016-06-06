@@ -4,7 +4,7 @@ class Geocode
   BASE_URL_DOS = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
   attr_accessor :place_id, :formatted_address, :location, :longitud, :latitud, :viewport, :geometry
   def initialize(data)
-    data["results"].collect do |hash|
+    data["results"].first.collect do |hash|
       @place_id =  hash["place_id"]
       @formatted_address = hash["formatted_address"]
       @geometry = hash["geometry"]
