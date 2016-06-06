@@ -13,10 +13,9 @@ class Geocode
       @longitud = nil
     else
       hash = data["results"][0]
-        @place_id =  hash["place_id"]
-        @formatted_address = hash["formatted_address"]
-        @geometry = hash["geometry"]
-
+      @place_id =  hash["place_id"]
+      @formatted_address = hash["formatted_address"]
+      @geometry = hash["geometry"]
       @location = @geometry["location"]
       @latitud = @geometry["location"]["lat"]
       @longitud = @geometry["location"]["lng"]
