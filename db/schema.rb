@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603174556) do
+ActiveRecord::Schema.define(version: 20160606022439) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "holes", force: :cascade do |t|
+    t.string   "current_user_id",      null: false
+    t.decimal  "origin_latitud",       null: false
+    t.decimal  "origin_longitud",      null: false
+    t.string   "origin_image",         null: false
+    t.decimal  "destination_latitud"
+    t.decimal  "destination_longitud"
+    t.string   "destination_image"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "uid"
