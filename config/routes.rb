@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
-  root 'holes#show'
-  get '/' => 'holes#show'
+  root 'holes#index'
 
   delete "/logout" => "sessions#destroy", as: :logout
   get "/auth/:provider/callback" => "sessions#create"
 
+
+  resources :holes
   post '/search_result' => 'holes#search_result'
 
   # The priority is based upon order of creation: first created -> highest priority.
