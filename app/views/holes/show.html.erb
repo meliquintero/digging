@@ -11,7 +11,12 @@
       <p><strong>Address: </strong><%=hole.destination_address%></p>
       <p><strong>Latitud: </strong><%=hole.destination_latitud%></p>
       <p><strong>Longitud: </strong><%=hole.destination_longitud%></p>
+
+      <% if hole.destination_address.empty? %>
+      <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{hole.destination_address}&zoom=60&size=420x200") %>
+      <%else%>
       <%=image_tag hole.destination_image%>
+      <% end %>
     </td>
 
   </tr>
