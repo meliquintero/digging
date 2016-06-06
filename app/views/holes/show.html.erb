@@ -28,6 +28,7 @@
           <p><strong>Longitud: </strong><%=@location.longitud %></p>
           <img src="https://maps.googleapis.com/maps/api/streetview?size=420x500&location=<%=@location.latitud%>,<%=@location.longitud%>">
       </td>
+      <%if @destination != nil%>
       <td>
         <p><strong>Address: </strong> <%=@destination.formatted_address %></p>
         <p><strong>Latitud: </strong><%=@destination.latitud %></p>
@@ -35,7 +36,7 @@
         <img src="https://maps.googleapis.com/maps/api/streetview?size=420x500&location=<%=@destination.latitud%>,<%=@destination.longitud%>">
       </td>
     </tr>
-
+    <%end%>
   </table>
 </div>
 <% end %>

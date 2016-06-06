@@ -4,14 +4,23 @@ class Geocode
   BASE_URL_DOS = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
   attr_accessor :place_id, :formatted_address, :location, :longitud, :latitud, :viewport, :geometry
   def initialize(data)
-    data["results"].first.collect do |hash|
-      @place_id =  hash["place_id"]
-      @formatted_address = hash["formatted_address"]
-      @geometry = hash["geometry"]
+    if data["status"] == "ZERO_RESULTS"
+      @place_id = nil
+      @formatted_address = nil
+      @geometry = nil
+      @location = nil
+      @latitud = nil
+      @longitud = nil
+    else
+      hash = data["results"][0]
+        @place_id =  hash["place_id"]
+        @formatted_address = hash["formatted_address"]
+        @geometry = hash["geometry"]
+
+      @location = @geometry["location"]
+      @latitud = @geometry["location"]["lat"]
+      @longitud = @geometry["location"]["lng"]
     end
-    @location = @geometry["location"]
-    @latitud = @geometry["location"]["lat"]
-    @longitud = @geometry["location"]["lng"]
   end
 
   def self.find_destination(lat, long)
