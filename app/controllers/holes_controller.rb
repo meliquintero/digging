@@ -1,5 +1,7 @@
 require "#{Rails.root}/lib/Geocode.rb"
 class HolesController < ApplicationController
+  before_action :require_login, only: [:create, :show, :destroy]
+
   def index
 
   end
@@ -50,11 +52,5 @@ class HolesController < ApplicationController
       render :index
     end
 
-  end
-
-  private
-
-  def hole_create_params
-    params.require(:hole).permit(:current_user_id, :origin_latitud, :origin_longitud, :origin_image, :destination_latitud, :destination_longitud, :destination_image)
   end
 end
