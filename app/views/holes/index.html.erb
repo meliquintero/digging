@@ -39,9 +39,9 @@
         <%if @destination.place_id == nil %>
         <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{@destination.latitud},#{@destination.longitud}&zoom=5&size=420x420") %>
         <%elsif @destination.formatted_address.include? "China"%>
-        <%= image_tag("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@destination.photo_reference}&key=AIzaSyBPgkovQBMasblHCojHk0jXd_pIg_3aLrU")%>
+        <%= image_tag("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@destination.photo_reference}&key=" + ENV["GOOGLE_KEY"])%>
         <%else%>
-        <%= image_tag("https://maps.googleapis.com/maps/api/place/photo?maxwidth=420&photoreference=#{@destination.photo_reference}&key=AIzaSyBPgkovQBMasblHCojHk0jXd_pIg_3aLrU")%>
+        <%= image_tag("https://maps.googleapis.com/maps/api/place/photo?maxwidth=420&photoreference=#{@destination.photo_reference}&key=" + ENV["GOOGLE_KEY"])%>
         <%= image_tag("https://maps.googleapis.com/maps/api/streetview?size=420x420&location=#{@destination.latitud},#{@destination.longitud}")%>
         <%end%>
       </div>
@@ -63,7 +63,7 @@
         <%=hidden_field_tag :destination_address, @destination.formatted_address %>
         <%=hidden_field_tag :destination_latitud, @destination.latitud%>
         <%=hidden_field_tag :destination_longitud, @destination.longitud%>
-        <%=hidden_field_tag :destination_image, "https://maps.googleapis.com/maps/api/place/photo?maxwidth=420&photoreference=#{@destination.photo_reference}&key=AIzaSyBPgkovQBMasblHCojHk0jXd_pIg_3aLrU"%>
+        <%=hidden_field_tag :destination_image, "https://maps.googleapis.com/maps/api/place/photo?maxwidth=420&photoreference=#{@destination.photo_reference}&key=" + ENV["GOOGLE_KEY"]%>
 
         <%=submit_tag 'Save Hole!!', class: "btn btn-primary"%>
         <%end%>

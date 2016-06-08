@@ -3,7 +3,7 @@ class Geocode
   BASE_URL = "https://maps.googleapis.com/maps/api/geocode/json?address="
   BASE_URL_DOS = "https://maps.googleapis.com/maps/api/geocode/json?latlng="
   BASE_URL_PLACES_DETAILS = "https://maps.googleapis.com/maps/api/place/details/json?placeid="
-  KEY2 = "AIzaSyBPgkovQBMasblHCojHk0jXd_pIg_3aLrU"
+  KEY2 = ENV["GOOGLE_KEY"]
 
   attr_accessor :place_id, :formatted_address, :longitud, :latitud, :reference, :photo_reference
   def initialize(data, lat = nil, long = nil)
