@@ -27,3 +27,13 @@
 .totheleft {
   float: right;
 }
+
+.img-index{
+  height: 420px;
+  overflow: hidden;
+}
+
+.img-show{
+  height: 200px;
+  overflow: hidden;
+}

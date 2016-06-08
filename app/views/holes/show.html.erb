@@ -15,7 +15,10 @@
       <% if hole.destination_address.empty? %>
       <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{hole.destination_address}&zoom=60&size=420x200") %>
       <%else%>
+      <div class="img-show">
+
       <%=image_tag hole.destination_image%>
+      </div>
       <% end %>
     </td>
 

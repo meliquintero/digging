@@ -26,6 +26,7 @@
         <p><strong>Address: </strong> <%=@location.formatted_address %></p>
         <p><strong>Latitud: </strong><%=@location.latitud %></p>
         <p><strong>Longitud: </strong><%=@location.longitud %></p>
+
         <%= image_tag("https://maps.googleapis.com/maps/api/streetview?size=420x420&location=#{@location.latitud},#{@location.longitud}")%>
       </td>
       <%if @destination != nil%>
@@ -33,11 +34,17 @@
         <p><strong>Address: </strong> <%=@destination.formatted_address %></p>
         <p><strong>Latitud: </strong><%=@destination.latitud %></p>
         <p><strong>Longitud: </strong><%=@destination.longitud %></p>
+        <div class="img-index">
+
         <%if @destination.place_id == nil %>
-        <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{@destination.formatted_address}&zoom=60&size=420x420") %>
+        <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{@destination.latitud},#{@destination.longitud}&zoom=5&size=420x420") %>
+        <%elsif @destination.formatted_address.include? "China"%>
+        <%= image_tag("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=#{@destination.photo_reference}&key=AIzaSyBPgkovQBMasblHCojHk0jXd_pIg_3aLrU")%>
         <%else%>
+        <%= image_tag("https://maps.googleapis.com/maps/api/place/photo?maxwidth=420&photoreference=#{@destination.photo_reference}&key=AIzaSyBPgkovQBMasblHCojHk0jXd_pIg_3aLrU")%>
         <%= image_tag("https://maps.googleapis.com/maps/api/streetview?size=420x420&location=#{@destination.latitud},#{@destination.longitud}")%>
         <%end%>
+      </div>
       </td>
     </tr>
     <%end%>
@@ -45,7 +52,6 @@
     <%if current_user != nil%>
     <tr>
       <td>
-
       </td>
       <td class="fava">
         <%= form_tag holes_path, method: :post do %>
@@ -57,7 +63,8 @@
         <%=hidden_field_tag :destination_address, @destination.formatted_address %>
         <%=hidden_field_tag :destination_latitud, @destination.latitud%>
         <%=hidden_field_tag :destination_longitud, @destination.longitud%>
-        <%=hidden_field_tag :destination_image, "https://maps.googleapis.com/maps/api/streetview?size=420x200&location=#{@destination.latitud},#{@destination.longitud}"%>
+        <%=hidden_field_tag :destination_image, "https://maps.googleapis.com/maps/api/place/photo?maxwidth=420&photoreference=#{@destination.photo_reference}&key=AIzaSyBPgkovQBMasblHCojHk0jXd_pIg_3aLrU"%>
+
         <%=submit_tag 'Save Hole!!', class: "btn btn-primary"%>
         <%end%>
       </td>

@@ -49,6 +49,16 @@ class HolesController < ApplicationController
       @destination_latitud = @location.latitud
       @destination_longitud = @location.longitud * (-1)
       @destination = Geocode.find_destination(@destination_latitud,@destination_longitud)
+      if @destination.formatted_address
+         if @destination.formatted_address.include? "China"
+           place = @destination.formatted_address.split(',')
+           if place[0][/\d+/].nil?
+             @destination = Geocode.find("#{place[0]}, #{place[1]}")
+           else
+             @destination = Geocode.find(place[1])
+         end
+        end
+      end
       render :index
     end
 
